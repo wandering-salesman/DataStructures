@@ -277,18 +277,18 @@ void Array::insertSort(int x)
     // Insert value in a sorted array
     if (length < size)
     {
-        int i = length-1;
+        int i = length - 1;
         while (A[i] > x && i >= 0)
         {
-            A[i+1] = A[i];
+            A[i + 1] = A[i];
             i--;
         }
-        A[i+1] = x;
+        A[i + 1] = x;
         length++;
     }
     else
         std::cout << "\nSize exceeded\n";
-        display();
+    display();
 }
 
 bool Array::isSorted()
@@ -301,7 +301,11 @@ bool Array::isSorted()
     return true;
 }
 
-void rearrange(); // separate negative elements and positive elements
+void Array::rearrange()
+{
+    // separate negative elements and positive elements
+    
+}
 Array *mergeArrays(Array *b);
 Array *unionArrays(Array *b);
 Array *intersectionArrays(Array *b);
