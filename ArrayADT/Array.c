@@ -304,7 +304,7 @@ void insertSort(struct Array *arr, int x)
         return;
 
     int i = arr->length - 1;
-    while (arr->A[i] > x && i >=0)
+    while (arr->A[i] > x && i >= 0)
     {
         arr->A[i + 1] = arr->A[i];
         i--;
@@ -345,7 +345,7 @@ struct Array *mergeArrays(struct Array *a, struct Array *b)
     while (i < a->length && j < b->length)
     {
         if (a->A[i] < b->A[j])
-            res->A[k++] = a->A[i];
+            res->A[k++] = a->A[i++];
         else
             res->A[k++] = b->A[j++];
     }
@@ -367,13 +367,11 @@ struct Array *unionArrays(struct Array *a, struct Array *b)
     while (i < a->length && j < b->length)
     {
         if (a->A[i] < b->A[j])
-            res->A[k++] = a->A[i];
+            res->A[k++] = a->A[i++];
         else if (b->A[j] < a->A[i])
             res->A[k++] = b->A[j++];
         else
-        {
             res->A[k++] = b->A[j];
-        }
     }
 
     for (; i < a->length; i++)
@@ -416,7 +414,7 @@ struct Array *differenceArrays(struct Array *a, struct Array *b)
     while (i < a->length && j < b->length)
     {
         if (a->A[i] < b->A[j])
-            res->A[k++] = a->A[i];
+            res->A[k++] = a->A[i++];
         else if (b->A[j] < a->A[i])
             j++;
         else

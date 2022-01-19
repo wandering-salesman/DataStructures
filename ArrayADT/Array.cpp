@@ -43,31 +43,23 @@ public:
     void insertSort(int x); // Insert value in a sorted array
     bool isSorted();
     void rearrange(); // separate negative elements and positive elements
-    Array *mergeArrays(Array *b);
-    Array *unionArrays(Array *b);
-    Array *intersectionArrays(Array *b);
-    Array *differenceArrays(Array *b);
+    Array *mergeArrays(Array b);
 };
 
 int main()
 {
     Array arr;
-    arr.add(5);
-    arr.add(6);
-    arr.add(7);
-    arr.add(8);
-    arr.add(9);
-    arr.add(10);
-    // arr.insert(3, 5);
-    // arr.set(4, 8);
-    // std::cout << "\nperformed function max: " << arr.max() << '\n';
-    // std::cout << "\nperformed function min: " << arr.min() << '\n';
-    // std::cout << "\nperformed function sum: " << arr.sum() << '\n';
-    // std::cout << "\nperformed function is sorted: " << arr.isSorted() << '\n';
-
-    // std::cout << "\n69 is at index: " << arr.linearSearchImproved(69) << '\n';
-    // std::cout << "\n77 is at index: " << arr.binarySearch(77) << '\n';
-    arr.insertSort(8);
+    Array brr;
+    arr.add(1);
+    arr.add(2);
+    arr.add(3);
+    // brr.add(1);
+    brr.add(2);
+    brr.add(3);
+    brr.add(4);
+    brr.add(5);
+    std::cout << "\nmerged a & b: ";
+    arr.mergeArrays(brr);
     return 0;
 }
 
@@ -304,9 +296,40 @@ bool Array::isSorted()
 void Array::rearrange()
 {
     // separate negative elements and positive elements
-    
+    int i = 0;
+    int j = length - 1;
+    while (i < j)
+    {
+        while (A[i] < 0)
+            i++;
+        while (A[j] >= 0)
+            j--;
+        if (i < j)
+            swap(A[i], A[j]);
+    }
+    display();
 }
-Array *mergeArrays(Array *b);
-Array *unionArrays(Array *b);
-Array *intersectionArrays(Array *b);
-Array *differenceArrays(Array *b);
+
+Array *Array::mergeArrays(Array b)
+{
+    Array *res = new Array();
+    res->size = size + b.size;
+    res->length = length + b.length;
+    int i, j, k;
+    i = j = k = 0;
+
+    while (i < length && j < b.length)
+    {
+        if (A[i] < b.A[j])
+            res->A[k++] = A[i++];
+        else
+            res->A[k++] = b.A[j++];
+    }
+
+    for (; i < length; i++)
+        res->A[k++] = A[i];
+    for (; j < b.length; j++)
+        res->A[k++] = b.A[j];
+    res->display();
+    return res;
+}
